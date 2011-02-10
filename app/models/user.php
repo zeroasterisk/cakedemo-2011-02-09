@@ -90,6 +90,10 @@ class User extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-
+	function mystoredproc($id) {
+		$data = $this->query("mystoredproc $id");
+		// maniplat
+		return  $data;
+	}
 }
 ?>

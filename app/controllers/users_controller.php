@@ -1,6 +1,6 @@
 <?php
 class UsersController extends AppController {
-
+	// example
 	var $name = 'Users';
 
 	function index() {
@@ -8,12 +8,23 @@ class UsersController extends AppController {
 		$this->set('users', $this->paginate());
 	}
 
-	function view($id = null) {
+	function view($id = null, $viewstyle=null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$user = $this->User->read(null, $id);
+		$this->set(compact('viewstyle', 'user', 'id'));
+		//$this->set('user', $this->User->mystoredproc($id));
+	}
+	
+	function view_groups($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('user', $this->User->read(null, $id));
+		//$this->set('user', $this->User->mystoredproc($id));
 	}
 
 	function add() {
