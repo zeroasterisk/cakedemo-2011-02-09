@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#APP=`pwd`
+#exec php -q ${LIB}../cake/console/cake.php -working "${APP}" "$@"
+
+LIB=${0/%.cake/}
+APP=`pwd`
+LIB="${APP}/../cake/console/"
+
+
+exec php -q ${LIB}cake.php -working "${APP}" "$@"
+
+
+exit;
